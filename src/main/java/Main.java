@@ -42,71 +42,126 @@ public class Main {
         writeString(json2,"data2.json");
     }
 
-//    private static Employee read(Node node) {
-// //
-//        int id = 0;
-//        String firstName = "";
-//        String lastName = "";
-//        String country = "";
-//        int age = 0;
-//        NodeList nodeList = node.getChildNodes();
-//        for (int i = 0; i < nodeList.getLength(); i++) {
-//            Node node_ = nodeList.item(i);
-//            if (Node.ELEMENT_NODE == node_.getNodeType()) {
-//                Element element = (Element) node_;
-//
-//                if ("id" == node_.getNodeName()) {
-//                    id = Integer.parseInt(node_.getTextContent());
-//                    //   System.out.println(id);
-//                }
-//                if ("firstName" == node_.getNodeName()) {
-//                    firstName = node_.getTextContent();
-//                    //   System.out.println(id + "_" + firstName);
-//                }
-//                if ("lastName" == node_.getNodeName()) {
-//                    lastName = node_.getTextContent();
-//                    //   System.out.println(id + "_" + firstName + lastName);
-//                }
-//                if ("country" == node_.getNodeName()) {
-//                    country = node_.getTextContent();
-//                    //  System.out.println(id + "_" + firstName + lastName + country);
-//                }
-//                if ("age" == node_.getNodeName()) {
-//
-//                    age = Integer.parseInt(node_.getTextContent());
-//                    //   System.out.println(id + "_" + firstName + lastName + country + age);
-//                    System.out.println("kloji " + id + "_" + firstName + "_" + lastName + "_" + country + "_" + age);
-//                    yyyy = new Employee(id, firstName, lastName, country, age);
-// //                   employeess.add(employee);
-////                    if(yyyy != null){
-////                        employeess.add(yyyy);
-////                    }
-//                    System.out.println(yyyy);
-//
-//                    //return employee;
-////                    if(employee != null){
-////                        list.add(employee);
-////                    }
-//                    //        list.add(employee);
-//
-//  //                  System.out.println("list " + list);
+    private static List<Employee> read(Node node, List<Employee> listts) {
+ //
+        List<Employee> employeess = null;
+     //   Employee listp = null;
+        Employee ppppp = null;
+        int id = 0;
+        String firstName = "";
+        String lastName = "";
+        String country = "";
+        int age = 0;
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node_ = nodeList.item(i);
+        //    System.out.println(node_);
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>        if(node_ != null) {
+
+
+    //        }
+            if (Node.ELEMENT_NODE == node_.getNodeType()) {
+                Element element = (Element) node_;
+
+                if ("id" == node_.getNodeName()) {
+                   id = Integer.parseInt(node_.getTextContent());
+                    //   System.out.println(id);
+                }
+                if ("firstName" == node_.getNodeName()) {
+                   firstName = node_.getTextContent();
+                    //   System.out.println(id + "_" + firstName);
+                }
+                if ("lastName" == node_.getNodeName()) {
+                    lastName = node_.getTextContent();
+                    //   System.out.println(id + "_" + firstName + lastName);
+                }
+                if ("country" == node_.getNodeName()) {
+                   country = node_.getTextContent();
+                    //  System.out.println(id + "_" + firstName + lastName + country);
+                }
+                if ("age" == node_.getNodeName()) {
+
+                   age = Integer.parseInt(node_.getTextContent());
+                    //   System.out.println(id + "_" + firstName + lastName + country + age);
+                    System.out.println("kloji " + id + "_" + firstName + "_" + lastName + "_" + country + "_" + age);
+              //      System.out.println(i);
+                    Employee yyyy = new Employee(id, firstName, lastName, country, age);
+                    System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyy   " + yyyy);
+                //    if(yyyy != null){
+                    System.out.println("yyyyyyyyyyyyyyyyyyyyyypppp1   " + listts);
+                    ppppp = yyyy;
+              //      listts.add(yyyy);
+                    System.out.println("yyyyyyyyyyyyyyyyyyyyyypppp2   " + listts);
+               //     break;
+              //      return listts;
+                //    }
+                  //  listts.add(yyyy);
+                  //  return yyyy;
+                 //   listp.add(yyyy);
+ //                   employeess.add(employee);
+//                    if(yyyy != null){
+//                        employeess.add(yyyy);
 //                    }
-//            }
-//         //   System.out.println(employee);
-//            read(node_);
+  //                  System.out.println(yyyy);
+
+                    //return employee;
+//                    if(employee != null){
+//                        list.add(employee);
+//                    }
+                    //        list.add(employee);
+
+  //                  System.out.println("list " + list);
+                    }
+            }
+
+         //   }
+
+
+
+
+
+
+            //000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+         //   System.out.println(employee);
+  //          if (yyyy != null) {
+         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       read(node_, null);
+       //     read(node_, listts);
+   //         }
+    //      if(node_ != null) {
+         //     listts =
+              listts =  read(node_, listts);
+
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>        }
+      //    listts = read(node_, listts);
+
+
+            // listp.add(read(node_));
+  //          System.out.println("999999999999999999999   " + yyyy);
+        }
+    //    System.out.println("oiooooiiioio   " + yyyy);
+//        if(employee != null) {
+//            employeess.add(employee);
 //        }
-//    //    System.out.println("oiooooiiioio   " + yyyy);
-////        if(employee != null) {
-////            employeess.add(employee);
-////        }
-//
-//
-//        System.out.println("oiooooiiioio   " + yyyy);
-//        return null;
-//    }
+       // read(node_, listts);
+
+  //      System.out.println("oiooooiiioio   " + yyyy);
+
+//        if(yyyy != null){
+//            return listts;
+//        }
+       // return listts;
+        //return listp;
+        if(ppppp != null){
+            listts.add(ppppp);
+        }
+
+        return listts;
+    }
 
     private static List<Employee> parseXML(String s)  {
-        List<Employee> employees = null;
+
+        List<Employee> employees = new ArrayList<Employee>();
+        List<Employee> uuuiuiu = null;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         int id = 0;
@@ -134,67 +189,74 @@ public class Main {
 //        }
 
      //   System.out.println(read(root));
+     //     if (read(root, employees) != null ) {
+              uuuiuiu = read(root, employees);
+     //     }
+
 
  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       read(root);
-
-            NodeList nodeList = root.getChildNodes();
-            for (int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-
-             if (Node.ELEMENT_NODE == node.getNodeType()) {
-                Element employee = (Element) node;
-                NodeList employeeList = employee.getChildNodes();
-                for (int j = 0; j < employeeList.getLength(); j++) {
-                    Node n = employeeList.item(j);
-                    if (Node.ELEMENT_NODE == n.getNodeType()) {
-         //               System.out.println("Node name " + n.getNodeName());
-                        if ("id" == n.getNodeName()) {
-                    id = Integer.parseInt(n.getTextContent());
-         //             System.out.println(id);
-                        }
-
-                        if ("firstName" == n.getNodeName()) {
-                    firstName = n.getTextContent();
-         //              System.out.println(id + "_" + firstName);
-                }
-                if ("lastName" == n.getNodeName()) {
-                    lastName = n.getTextContent();
-                    //   System.out.println(id + "_" + firstName + lastName);
-                }
-                if ("country" == n.getNodeName()) {
-                    country = n.getTextContent();
-                    //  System.out.println(id + "_" + firstName + lastName + country);
-                }
-                        if ("age" == n.getNodeName()) {
 //
-                    age = Integer.parseInt(n.getTextContent());
-//                    //   System.out.println(id + "_" + firstName + lastName + country + age);
-                    System.out.println("kloji " + id + "_" + firstName + "_" + lastName + "_" + country + "_" + age);
-                   }
+//            NodeList nodeList = root.getChildNodes();
+//            for (int i = 0; i < nodeList.getLength(); i++) {
+//            Node node = nodeList.item(i);
+//
+//             if (Node.ELEMENT_NODE == node.getNodeType()) {
+//                Element employee = (Element) node;
+//                NodeList employeeList = employee.getChildNodes();
+//                for (int j = 0; j < employeeList.getLength(); j++) {
+//                    Node n = employeeList.item(j);
+//                    if (Node.ELEMENT_NODE == n.getNodeType()) {
+//         //               System.out.println("Node name " + n.getNodeName());
+//                        if ("id" == n.getNodeName()) {
+//                    id = Integer.parseInt(n.getTextContent());
+//         //             System.out.println(id);
+//                        }
+//
+//                        if ("firstName" == n.getNodeName()) {
+//                    firstName = n.getTextContent();
+//         //              System.out.println(id + "_" + firstName);
+//                }
+//                if ("lastName" == n.getNodeName()) {
+//                    lastName = n.getTextContent();
+//                    //   System.out.println(id + "_" + firstName + lastName);
+//                }
+//                if ("country" == n.getNodeName()) {
+//                    country = n.getTextContent();
+//                    //  System.out.println(id + "_" + firstName + lastName + country);
+//                }
+//                        if ("age" == n.getNodeName()) {
+////
+//                    age = Integer.parseInt(n.getTextContent());
+////                    //   System.out.println(id + "_" + firstName + lastName + country + age);
+//                    System.out.println("kloji " + id + "_" + firstName + "_" + lastName + "_" + country + "_" + age);
+//                   }
+//
+//                    }
+//
+//                }
+//
+////////                id = Integer.parseInt(element.getAttribute("id"));
+////////                firstName = element.getAttribute("firstName");
+////////                lastName = element.getAttribute("lastName");
+////////                country = element.getAttribute("country");
+//////                  age = Integer.parseInt(element.getAttribute("age"));
+//
+//            }
+//
+//              //   Employee employee = new Employee(id, firstName, lastName, country, age);
+//               //  employees.add(employee);
+//        }
+//
+//
+//
 
 
 
 
 
-
-
-                    }
-
-                }
-
-//////                id = Integer.parseInt(element.getAttribute("id"));
-//////                firstName = element.getAttribute("firstName");
-//////                lastName = element.getAttribute("lastName");
-//////                country = element.getAttribute("country");
-////                  age = Integer.parseInt(element.getAttribute("age"));
-
-            }
-
-              //   Employee employee = new Employee(id, firstName, lastName, country, age);
-               //  employees.add(employee);
-        }
         System.out.println("908098 " + employees);
-        return employees;
+        return uuuiuiu;
+        //return employees;
     }
 
     private static void writeString(String json,String path) {
