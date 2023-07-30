@@ -27,7 +27,6 @@ import java.util.Arrays;
 import java.util.List;
 
 
-
 public class Main {
 
     public static void main(String[] args) throws IOException, SAXException {
@@ -36,47 +35,41 @@ public class Main {
         String fileName = "data.csv";
 
         List<Employee> list = parseCSV(columnMapping, fileName);
-     //   System.out.println("print list " + list);
         String json = listToJson(list);
         writeString(json, "data.json");
 
-        List<Employee> listXML = parseXML("data.xml");
-        String json2 = listToJson(listXML);
+        List<Employee> listFromXML = parseXML("data.xml");
+        String json2 = listToJson(listFromXML);
         writeString(json2, "data2.json");
 
-        String jsonNew = readString("data2.json");
-    //    System.out.println(jsonNew);
-        List<Employee> listm = jsonToList(jsonNew);
-        listm.forEach((n) -> {
+        String jsonString = readString("data2.json");
+        List<Employee> listFromJSON = jsonToList(jsonString);
+        listFromJSON.forEach((n) -> {
             System.out.println(n);
         });
-     //   System.out.println("listm " + listm);
     }
 
     private static List<Employee> jsonToList(String jsonNew) {
-        List<Employee> emmpl = new ArrayList<Employee>();
+        List<Employee> employees = new ArrayList<Employee>();
         JSONParser parser = new JSONParser();
         JSONArray message = null;
         try {
-            Object  obj = parser.parse(jsonNew);
+            Object obj = parser.parse(jsonNew);
             message = (JSONArray) obj;
-        //    System.out.println(message);
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
-            for(int i = 0; i < message.size(); i++){
+            for (int i = 0; i < message.size(); i++) {
                 message.get(i);
                 Employee empl = gson.fromJson(String.valueOf(message.get(i)), Employee.class);
-                emmpl.add(empl);
-             //   System.out.println("empl " + empl);
+                employees.add(empl);
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return emmpl;
+        return employees;
     }
 
-    private static String readString(String s)  {
-
+    private static String readString(String s) {
         FileReader in = null;
         try {
             in = new FileReader(s);
@@ -84,7 +77,6 @@ public class Main {
             throw new RuntimeException(e);
         }
         BufferedReader br = new BufferedReader(in);
-
         String line;
         while (true) {
             try {
@@ -92,16 +84,14 @@ public class Main {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-     //>       System.out.println("line1 " + line);
             return line;
         }
-    //>    System.out.println("line2 " + line);
         return "";
     }
 
-    private static List<Employee> read(Node node, List<Employee> listts) {
+    private static List<Employee> read(Node node, List<Employee> list) {
 
-        Employee ppppp = null;
+        Employee employee = null;
         int id = 0;
         String firstName = "";
         String lastName = "";
@@ -129,32 +119,26 @@ public class Main {
                 }
                 if ("age" == node_.getNodeName()) {
                     age = Integer.parseInt(node_.getTextContent());
-                    Employee yyyy = new Employee(id, firstName, lastName, country, age);
-                    ppppp = yyyy;
+                    employee = new Employee(id, firstName, lastName, country, age);
                 }
 
             }
-            listts = read(node_, listts);
+            list = read(node_, list);
         }
 
-        if (ppppp != null) {
-            listts.add(ppppp);
+        if (employee != null) {
+            list.add(employee);
         }
-
-        return listts;
+        return list;
     }
 
     private static List<Employee> parseXML(String s) {
 
         List<Employee> employees = new ArrayList<Employee>();
-        List<Employee> uuuiuiu = null;
+        List<Employee> employee = null;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
-//        int id = 0;
-//        String firstName = "";
-//        String lastName = "";
-//        String country = "";
-//        int age = 0;
+
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -170,10 +154,9 @@ public class Main {
         }
         Node root = doc.getDocumentElement();
 
-        uuuiuiu = read(root, employees);
+        employee = read(root, employees);
 
-    //    System.out.println("908098 " + employees);
-        return uuuiuiu;
+        return employee;
     }
 
     private static void writeString(String json, String path) {
@@ -188,7 +171,8 @@ public class Main {
 
     private static String listToJson(List<Employee> list) {
 
-        Type listType = new TypeToken<List<Employee>>() {}.getType();
+        Type listType = new TypeToken<List<Employee>>() {
+        }.getType();
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
