@@ -1,13 +1,13 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+
 import com.google.gson.reflect.TypeToken;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvValidationException;
-import com.google.gson.JsonArray;
+
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -20,16 +20,13 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.json.simple.JSONValue.parse;
+
 
 public class Main {
 
@@ -47,58 +44,59 @@ public class Main {
         String json2 = listToJson(listXML);
         writeString(json2, "data2.json");
 
-        String jsonNew = readString("data3.json");
-        System.out.println(jsonNew);
-    //    List<Employee> listm = jsonToList(jsonNew);
+        String jsonNew = readString("data2.json");
+    //    System.out.println(jsonNew);
+        List<Employee> listm = jsonToList(jsonNew);
+        listm.forEach((n) -> {
+            System.out.println(n);
+        });
+     //   System.out.println("listm " + listm);
     }
 
-    private static String readString(String s) {
-
+    private static List<Employee> jsonToList(String jsonNew) {
+        List<Employee> emmpl = new ArrayList<Employee>();
         JSONParser parser = new JSONParser();
-
-
         JSONArray message = null;
-       // Object obj = null;
         try {
-          Object  obj = parser.parse(new FileReader(s));
-//         //   JSONObject jsonObject = (JSONObject) obj;
+            Object  obj = parser.parse(jsonNew);
             message = (JSONArray) obj;
-                    System.out.println(message);
+        //    System.out.println(message);
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
-                    for(int i = 0; i < message.size(); i++){
-                        message.get(i);
-             Employee empl = gson.fromJson(String.valueOf(message.get(i)), Employee.class);
-             System.out.println(empl);
-      /////                  System.out.println(message.get(i));
-                    }
-
-
-//         //   System.out.println("Oblect" + jsonObject);
-        } catch (IOException | ParseException e) {
+            for(int i = 0; i < message.size(); i++){
+                message.get(i);
+                Employee empl = gson.fromJson(String.valueOf(message.get(i)), Employee.class);
+                emmpl.add(empl);
+             //   System.out.println("empl " + empl);
+            }
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+        return emmpl;
+    }
 
- //       GsonBuilder builder = new GsonBuilder();
-  //      Gson gson = builder.create();
-       // Employee empl = gson.fromJson(message, Employee.class);
-//>>        Employee empl = gson.fromJson(String.valueOf(message), Employee.class);
-//>>        System.out.println(empl);
-      //  JsonObject jsonObject = (JsonObject) obj;
-//        for (int i = 0; i < message.size(); i++) {
-//            message.get(i);
-//            System.out.println(message.get(i));
-//        }
-//        for(Object o: message) {
-//            if (o instanceof JSONObject) {
-//             String u =  parse(String.valueOf((JSONObject)o));
-//                Employee emp = o.fromJson(, Employee.class);
-//            }
-//        }
+    private static String readString(String s)  {
 
+        FileReader in = null;
+        try {
+            in = new FileReader(s);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        BufferedReader br = new BufferedReader(in);
 
-     //   return message.toJSONString();
-        return "...";
+        String line;
+        while (true) {
+            try {
+                if (!((line = br.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+     //>       System.out.println("line1 " + line);
+            return line;
+        }
+    //>    System.out.println("line2 " + line);
+        return "";
     }
 
     private static List<Employee> read(Node node, List<Employee> listts) {
